@@ -1,2 +1,3 @@
-# create-employee-page-lp-author
-Repository for liveProject: Create Employee Page
+# Ventup React Training
+
+Inspired by: Employee Pages of Manning LiveProject Series, by Bonnie Schulkin.
