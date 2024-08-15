@@ -1,7 +1,7 @@
-import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Heading } from "@chakra-ui/react";
 import { EmployeeResult } from "./employees/EmployeeResult";
+import { useSearchTerm } from "../hooks/useSearchTerm";
 
 const fetchSearchResults = (searchParams) => {
   const url = `http://localhost:3030/employees?q=${searchParams}`;
@@ -9,14 +9,11 @@ const fetchSearchResults = (searchParams) => {
 };
 
 export function SearchResults() {
-  const defaultParams = { q: "" };
-  const [searchParams] = useSearchParams(defaultParams);
-
-  const queryParam = searchParams.get("q") || "";
+  const { searchTerm } = useSearchTerm();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["employee", queryParam],
-    queryFn: () => fetchSearchResults(queryParam),
+    queryKey: ["employee", searchTerm],
+    queryFn: () => fetchSearchResults(searchTerm),
   });
 
   if (isLoading) return "Loading...";
@@ -29,10 +26,10 @@ export function SearchResults() {
     data && (
       <>
         <Heading as="h2" size="lg" py={5}>
-          {queryParam === "" ? "All Employees" : "Search Results"} (
+          {searchTerm === "" ? "All Employees" : "Search Results"} (
           {data.length})
         </Heading>
-        <EmployeeResult data={data} />
+        <EmployeeResult data={data} searchTerm={searchTerm} />
       </>
     )
   );
