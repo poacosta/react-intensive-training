@@ -2,35 +2,30 @@ import { useQuery } from "@tanstack/react-query";
 import { Heading } from "@chakra-ui/react";
 import { EmployeeResult } from "./employees/EmployeeResult";
 import { useSearchTerm } from "../hooks/useSearchTerm";
-import { Loading } from "./Loading";
-
-const fetchSearchResults = (searchParams) => {
-  const url = `http://localhost:3030/employees?q=${searchParams}`;
-  return fetch(url).then((res) => res.json());
-};
 
 export function SearchResults() {
   const { searchTerm } = useSearchTerm();
-
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["employee", searchTerm],
-    queryFn: () => fetchSearchResults(searchTerm),
+  const {
+    data: searchResults,
+    isLoading,
+    isError,
+  } = useQuery(["search", searchTerm], async () => {
+    const response = await fetch(
+      `http://localhost:3030/employees?q=${searchTerm}`
+    );
+    return response.json();
   });
 
-  if (isLoading) return <Loading />;
-  if (error) return `An error has occurred: ${error.message}`;
-
-  const { message } = data;
-  if (message) return "No employee data available.";
+  if (isLoading || isError) return null;
 
   return (
-    data && (
+    searchResults && (
       <>
         <Heading as="h2" size="lg" py={5}>
           {searchTerm === "" ? "All Employees" : "Search Results"} (
-          {data.length})
+          {searchResults.length})
         </Heading>
-        <EmployeeResult data={data} searchTerm={searchTerm} />
+        <EmployeeResult data={searchResults} searchTerm={searchTerm} />
       </>
     )
   );

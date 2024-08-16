@@ -1,13 +1,12 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import theme from "./theme";
-
-const queryClient = new QueryClient();
+import { queryClient } from "./query-client";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
