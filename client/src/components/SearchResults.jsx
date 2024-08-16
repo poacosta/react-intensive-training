@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Heading } from "@chakra-ui/react";
 import { EmployeeResult } from "./employees/EmployeeResult";
 import { useSearchTerm } from "../hooks/useSearchTerm";
+import { Loading } from "./Loading";
 
 const fetchSearchResults = (searchParams) => {
   const url = `http://localhost:3030/employees?q=${searchParams}`;
@@ -16,7 +17,7 @@ export function SearchResults() {
     queryFn: () => fetchSearchResults(searchTerm),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
   if (error) return `An error has occurred: ${error.message}`;
 
   const { message } = data;

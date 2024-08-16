@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { EmployeeCard } from "./EmployeeCard";
+import { Loading } from "../Loading";
 
 const fetchEmployeeData = (id) => {
   const url = `http://localhost:3030/employees/${id}`;
@@ -15,7 +16,7 @@ export function Employee() {
     queryFn: () => fetchEmployeeData(id),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
   if (error) return `An error has occurred: ${error.message}`;
 
   const { message } = data;
