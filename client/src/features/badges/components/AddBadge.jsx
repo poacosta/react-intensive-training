@@ -14,10 +14,11 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const AddBadge = ({ employee }) => {
+  const queryClient = useQueryClient();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [badgeSelectionError, setBadgeSelectionError] = useState(false);
@@ -37,12 +38,35 @@ export const AddBadge = ({ employee }) => {
     { select: (data) => data.sort((a, b) => (b.name > a.name ? -1 : 1)) }
   );
 
+  const { mutate: addBadge } = useMutation(
+    async ({ badgeId, employeeId }) => {
+      const response = await fetch(
+        `http://localhost:3030/employees/${employeeId}/badges?badgeId=${badgeId}`,
+        { method: "PATCH" }
+      );
+      if (response.status >= 400) {
+        throw new Error(response.statusText);
+      }
+    },
+    {
+      onError: (error) => {
+        console.error(error);
+        setBadgeSelectionError(true);
+      },
+      onSuccess: () => {
+        queryClient.invalidateQueries(["employee", employee.id.toString()]);
+      },
+    }
+  );
+
   const onSubmit = () => {
-    console.log(`SELECTED BADGE ID: ${newBadgeId}`);
+    addBadge({ badgeId: newBadgeId, employeeId: employee.id });
+    setNewBadgeId(undefined);
     onClose();
   };
 
   const onCancel = () => {
+    setNewBadgeId(undefined);
     onClose();
   };
 
