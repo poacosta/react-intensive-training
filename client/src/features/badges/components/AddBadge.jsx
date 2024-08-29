@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { toast } from "../../app/components/Toast";
 
 export const AddBadge = ({ employee }) => {
   const queryClient = useQueryClient();
@@ -50,11 +51,22 @@ export const AddBadge = ({ employee }) => {
     },
     {
       onError: (error) => {
-        console.error(error);
-        setBadgeSelectionError(true);
+        toast({
+          title: "Failed to add badge",
+          description: error.message,
+          status: "error",
+          duration: 3000,
+          isClosable: true,
+        });
       },
       onSuccess: () => {
         queryClient.invalidateQueries(["employee", employee.id.toString()]);
+        toast({
+          title: "Badge added!",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
       },
     }
   );
