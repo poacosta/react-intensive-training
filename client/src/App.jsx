@@ -1,10 +1,10 @@
 import { Container } from "@chakra-ui/react";
 import { Route, Routes } from "react-router-dom";
-import { Header } from "./components/Header";
-import { Employee } from "./components/employees/Employee";
-import { SearchResults } from "./components/SearchResults";
-import { Loading } from "./components/Loading";
-import { ToastContainer } from "./components/Toast";
+import { Header } from "./features/app/components/Header";
+import { Employee } from "./features/employees/components/Employee";
+import { SearchResults } from "./features/search/components/SearchResults";
+import { Loading } from "./features/app/components/Loading";
+import { ToastContainer } from "./features/app/components/Toast";
 
 function App() {
   return (

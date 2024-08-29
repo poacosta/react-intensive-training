@@ -1,5 +1,5 @@
 import { Heading, HStack, Img, Text, VStack } from "@chakra-ui/react";
-import { Badges } from "../Badges";
+import { Badges } from "../../badges/components/Badges";
 
 export function EmployeeCard({ employee }) {
   const serverUrl = "http://localhost:3030";

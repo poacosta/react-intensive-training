@@ -1,6 +1,6 @@
 import { Heading, HStack } from "@chakra-ui/react";
 import { SongRiverLogo } from "./SongRiverLogo";
-import { SearchInput } from "./SearchInput";
+import { SearchInput } from "../../search/components/SearchInput";
 import { Link } from "react-router-dom";
 
 export function Header() {

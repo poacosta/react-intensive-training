@@ -1,6 +1,7 @@
 import { Divider, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 
 import { Badge } from "./Badge";
+import { AddBadge } from "./AddBadge";
 
 export const Badges = ({ employee }) => {
   const badges = employee.badgeDetails;
@@ -14,6 +15,7 @@ export const Badges = ({ employee }) => {
         {badges.map((badge) => (
           <Badge key={badge.id} badge={badge} />
         ))}
+        <AddBadge employee={employee} />
       </SimpleGrid>
     </VStack>
   );

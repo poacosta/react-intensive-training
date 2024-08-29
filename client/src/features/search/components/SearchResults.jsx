@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Heading } from "@chakra-ui/react";
-import { EmployeeResult } from "./employees/EmployeeResult";
+import { EmployeeResult } from "../../employees/components/EmployeeResult";
 import { useSearchTerm } from "../hooks/useSearchTerm";
 
 export function SearchResults() {
