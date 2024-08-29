@@ -6,6 +6,7 @@ const theme = extendTheme({
       body: {
         color: "blue.800",
         backgroundColor: "white",
+        overflowX: "hidden",
       },
     },
     colors: {
