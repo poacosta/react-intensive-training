@@ -1,5 +1,17 @@
 import { Box, HStack, Img, Text, VStack } from "@chakra-ui/react";
 
+/**
+ * Component to display an employee's information including their image,
+ * name, and team name.
+ *
+ * @param {Object} props - The properties object.
+ * @param {Object} props.employee - The employee object containing their information.
+ * @param {string} props.employee.imageFilePath - The file path to the employee's image.
+ * @param {string} props.employee.firstName - The first name of the employee.
+ * @param {string} props.employee.lastName - The last name of the employee.
+ * @param {string} props.employee.teamName - The team name the employee belongs to.
+ * @return {JSX.Element} A box containing the employee's image, name, and team name.
+ */
 export function EmployeeItem({ employee }) {
   const serverUrl = "http://localhost:3030";
 

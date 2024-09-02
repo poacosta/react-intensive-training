@@ -10,6 +10,14 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { useSearchTerm } from "../hooks/useSearchTerm";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * A search input component that allows the user to enter a search term.
+ *
+ * This component uses custom hooks to manage the search term and handles the input focus event to navigate to the search results.
+ * It consists of an input field, a search icon, and a reset button.
+ *
+ * @return {JSX.Element} The rendered search input component.
+ */
 export function SearchInput() {
   const { searchTerm, handleChange, handleReset } = useSearchTerm();
 
