@@ -7,13 +7,13 @@ them, check their details, and add badges to them.
 
 ## Be aware:
 
-- All the code is written in JavaScript and React.js.
+- All the `client` code is written in JavaScript and React.js.
 - Images, text, and other data are dummy data.
 - No real data is used in this project.
 - The project is not connected to any database.
 - The project is not connected to any backend.
-- Use the [README.md](http://README.md) files in the `client` and `server` directories for more information.
+- Use the README.md files in the `client` and `server` directories for more information.
 
 ## License
 
-This project is licensed under the GNU Affero General Public License v3.0 - see the LICENSE file for more details.
+This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE) file for more details.
