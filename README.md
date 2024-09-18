@@ -13,7 +13,3 @@ them, check their details, and add badges to them.
 - The project is not connected to any database.
 - The project is not connected to any backend.
 - Use the README.md files in the `client` and `server` directories for more information.
-
-## License
-
-This project is licensed under the GNU Affero General Public License v3.0 - see the [LICENSE](LICENSE) file for more details.
