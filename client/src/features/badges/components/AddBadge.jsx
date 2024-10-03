@@ -72,13 +72,19 @@ export const AddBadge = ({ employee }) => {
   );
 
   const onSubmit = () => {
-    addBadge({ badgeId: newBadgeId, employeeId: employee.id });
-    setNewBadgeId(undefined);
-    onClose();
+    if (!newBadgeId && newBadgeId !== 0) {
+      // don't submit if no badge has been selected
+      setBadgeSelectionError(true);
+    } else {
+      addBadge({ badgeId: newBadgeId, employeeId: employee.id });
+      setNewBadgeId(undefined);
+      onClose();
+    }
   };
 
   const onCancel = () => {
     setNewBadgeId(undefined);
+    setBadgeSelectionError(false);
     onClose();
   };
 
